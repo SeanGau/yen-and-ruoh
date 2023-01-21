@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yen & Ruoh</title>
+  <style>
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #004b92;
+      background-image: url("assets/bg_big.jpg");
+      background-size: cover;
+      background-position: center left;
+      border: 0;
+    }
+
+    body {
+      overscroll-behavior: none;
+    }
+
+    @keyframes blur-shine {
+      from {filter: blur(8px) brightness(2);}
+      to {filter: blur(6px) brightness(1.5);}
+    }
+    .img-blur, .img-shine {
+      filter: blur(8px) brightness(2);
+    }
+    .img-shine {
+      animation: blur-shine 1s ease 1s infinite alternate;
+    }
+
+    img,
+    #page-1,
+    #page-2 {
+      width: 100%;
+      height: auto;
+    }
+
+    #pre {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      cursor: pointer;
+    }
+
+    #pre img {
+      width: 50%;
+      margin: auto;
+      position: absolute;
+    }
+
+    #page {
+      display: flex;
+      justify-content: center;
+    }
+
+    #page-1,
+    #page-2 {
+      position: relative;
+      line-height: 0;
+    }
+
+    #page-1-f img {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    @media(max-width: 1023px) {
+      #page {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="pre">
+    <img class="img-blur img-shine" src="assets/text_only.png" alt="">
+    <img src="assets/text_only.png" alt="">
+  </div>
+  <div id="page">
+    <div id="page-1">
+      <img src="assets/B6_正面_B.jpg" alt="">
+      <div id="page-1-f">
+        <img class="img-blur" src="assets/B6_正面_F.png" alt="">
+        <img id="page-1-ff" src="assets/B6_正面_F.png" alt="">
+      </div>
+    </div>
+    <div id="page-2">
+      <img src="assets/B6_背面.jpg" alt="">
+    </div>
+  </div>
+  <audio id="music">
+    <source src="assets/463_short3_life-is-journey_0064.mp3" type="audio/mp3" />
+    Your browser does not support this audio format.
+  </audio>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script>
+  $("#pre").hide();
+  $("#page-1-f").hide();
+  $("#page").hide();
+  $(window).on("load", function () {
+    $("#pre").fadeIn(1000);
+    let pagein = function (e) {
+      e.preventDefault();
+      $("#page").fadeIn(1000);
+      $("#page-1-f").delay(800).fadeIn(1000);
+      $("#music")[0].play();
+    }
+    $("#pre").on("click", pagein);
+  })
+</script>
+
+</html>
