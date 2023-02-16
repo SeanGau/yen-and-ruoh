@@ -58,6 +58,22 @@
       position: absolute;
     }
 
+    @keyframes move {
+      from {bottom: 25%;}
+      to {bottom: 23%;}
+    }
+
+    #clickme {
+      position: absolute;
+      left: 50%;
+      bottom: 25%;
+      transform: translate(-50%, -50%);
+      color: palegoldenrod;
+      font-family: cursive;
+      font-size: 1.5rem;
+      animation: move 1s ease-in-out 1s infinite alternate;
+    }
+
     #page {
       display: flex;
       justify-content: center;
@@ -84,11 +100,12 @@
 </head>
 
 <body>
-  <div id="pre">
+  <div id="pre" style="display: none">
     <img class="img-blur img-shine" src="assets/text_only.png" alt="">
     <img src="assets/text_only.png" alt="">
+    <div id="clickme">Click</div>
   </div>
-  <div id="page">
+  <div id="page" style="display: none">
     <div id="page-1">
       <img src="assets/B6_正面_B.jpg" alt="">
       <div id="page-1-f">
@@ -107,9 +124,8 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script>
-  $("#pre").hide();
+  $("#clickme").hide();
   $("#page-1-f").hide();
-  $("#page").hide();
   $(window).on("load", function () {
     $("#pre").fadeIn(1000);
     let pagein = function (e) {
@@ -120,6 +136,10 @@
     }
     $("#pre").on("click", pagein);
   })
+
+  setTimeout(function(e) {
+    $("#clickme").fadeIn(500);
+  }, 5000)
 </script>
 
 </html>
